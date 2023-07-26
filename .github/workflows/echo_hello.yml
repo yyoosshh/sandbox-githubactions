@@ -3,7 +3,9 @@ name: echo Hello
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs: 
-  runs-on: ubuntu-latest
-  steps:
-    - run: echo "Hello!!!!!!!!!!!!!"
-    - run: echo "Done!!!!!!!!!!!!!!"
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello!!!!!!!!!!!!!"
+      - run: echo "Done!!!!!!!!!!!!!!"
+      
