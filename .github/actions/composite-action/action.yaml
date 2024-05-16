@@ -4,6 +4,10 @@ inputs:
     description: 'aaa'
     required: true
     default: '/usr/cache/'
+  KUBECTL_VERSION:
+    description: 'aaa'
+    required: true
+    default: 'v1.22.17'
 
 runs:
   using: 'composite'
@@ -11,3 +15,7 @@ runs:
     - name: debug cachedir
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
+    - name: curl kube
+      run: curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
+    - name: run kube
+      run: kubectl version
