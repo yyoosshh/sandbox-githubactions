@@ -15,12 +15,21 @@ runs:
     - name: mkdir
       run: |
         sudo mkdir ${{ inputs.CACHE_DIR }}
-        sudo touch ${{ inputs.CACHE_DIR }}kubectl
       shell: bash
+    - name: Load cache
+      id: cache_kubectl
+      uses: actions/cache@v3.3.3
+      with:
+        path: ${{ inputs.CACHE_DIR }}
+        key: kubectl-cache-${{ hashFiles('**/kubectl_version.txt') }}
+        restore-keys: |
+          kubectl-cache-
+      
     - name: debug cachedir
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
     - name: curl kube
+      if: steps.cache_kubectl.outputs.cache-hit != 'true'
       run: sudo curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
       shell: bash
     - name: run kube
