@@ -31,7 +31,11 @@ runs:
 
     - name: curl kube
       if: steps.cache_kubectl.outputs.cache-hit != 'true'
-      run: curl -fLo ${{ inputs.CACHE_DIR }}/kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
+      run: |
+        sudo curl -fLo ${{ inputs.CACHE_DIR }}/kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
+        sudo chmod +x ${{ inputs.CACHE_DIR }}/kubectl
+        sudo cp ${{ inputs.CACHE_DIR}}kubectl /usr/bin/kubectl
+
       shell: bash
 
     - name: run kube
