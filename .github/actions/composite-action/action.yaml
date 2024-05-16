@@ -14,14 +14,14 @@ runs:
   steps:
     - name: mkdir
       run: |
-        mkdir ${{ inputs.CACHE_DIR }}
-        touch ${{ inputs.CACHE_DIR }}/kubectl
+        sudo mkdir ${{ inputs.CACHE_DIR }}
+        sudo touch ${{ inputs.CACHE_DIR }}kubectl
       shell: bash
     - name: debug cachedir
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
     - name: curl kube
-      run: curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
+      run: sudo curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
       shell: bash
     - name: run kube
       run: kubectl version
