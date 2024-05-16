@@ -29,7 +29,7 @@ runs:
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
     - name: curl kube
-      if: steps.cache_kubectl.outputs.cache-hit == 'true'
+      if: steps.cache_kubectl.outputs.cache-hit != 'true'
       run: sudo curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
       shell: bash
     - name: run kube
