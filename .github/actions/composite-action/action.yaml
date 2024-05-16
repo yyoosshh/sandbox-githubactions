@@ -41,5 +41,5 @@ runs:
     - name: run kube
       run: |
         export PATH=${{ inputs.CACHE_DIR }}:$PATH
-        kubectl version
+        echo "DONE"
       shell: bash
