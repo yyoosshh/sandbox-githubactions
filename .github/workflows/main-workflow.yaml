@@ -7,4 +7,4 @@ jobs:
         - name: checkout code
           uses: actions/checkout@v3
         - name: run composite action
-          uses: ./github/workflows/external/composite-action
+          uses: ./.github/workflows/external/composite-action
