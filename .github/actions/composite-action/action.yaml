@@ -12,10 +12,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: mkdir
-      run: |
-        mkdir ${{ inputs.CACHE_DIR }}
-      shell: bash
+    # - name: mkdir
+    #   run: |
+    #     mkdir ${{ inputs.CACHE_DIR }}
+    #   shell: bash
     - name: Load cache
       id: cache_kubectl
       uses: actions/cache@v3.3.3
