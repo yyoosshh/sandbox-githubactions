@@ -24,5 +24,7 @@ runs:
       run: sudo curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
       shell: bash
     - name: run kube
-      run: kubectl version
+      run: |
+        set -euo pipefail
+        kubectl version
       shell: bash
