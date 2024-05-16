@@ -14,7 +14,7 @@ runs:
   steps:
     - name: mkdir
       run: |
-        mkdir ${{ inputs.CACHE_DIR }}
+        sudo mkdir ${{ inputs.CACHE_DIR }}
       shell: bash
     - name: Load cache
       id: cache_kubectl
