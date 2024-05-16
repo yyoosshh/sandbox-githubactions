@@ -3,7 +3,7 @@ inputs:
   CACHE_DIR:
     description: 'aaa'
     required: true
-    default: '/var/cache/'
+    default: '${{ github.workspace }}/.cache/'
   KUBECTL_VERSION:
     description: 'aaa'
     required: true
@@ -12,27 +12,30 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    # - name: mkdir
-    #   run: |
-    #     mkdir ${{ inputs.CACHE_DIR }}
-    #   shell: bash
+    - name: Create cache directory
+      run: mkdir -p ${{ inputs.CACHE_DIR }}
+      shell: bash
+
     - name: Load cache
       id: cache_kubectl
-      uses: actions/cache@v3.3.3
+      uses: actions/cache@v3
       with:
         path: ${{ inputs.CACHE_DIR }}
         key: kubectl-cache-${{ hashFiles('**/kubectl_version.txt') }}
         restore-keys: |
           kubectl-cache-
-      
+
     - name: debug cachedir
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
+
     - name: curl kube
       if: steps.cache_kubectl.outputs.cache-hit != 'true'
-      run: sudo curl -fLo ${{ inputs.CACHE_DIR }}kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
+      run: curl -fLo ${{ inputs.CACHE_DIR }}/kubectl https://dl.k8s.io/release/${{ inputs.KUBECTL_VERSION }}/bin/linux/amd64/kubectl
       shell: bash
+
     - name: run kube
       run: |
+        export PATH=${{ inputs.CACHE_DIR }}:$PATH
         which kubectl
       shell: bash
