@@ -3,7 +3,7 @@ inputs:
   CACHE_DIR:
     description: 'aaa'
     required: true
-    default: '${{ runner.temp }}/'  # $HOMEではなくrunner.tempを使用
+    default: '${{ runner.temp }}/.cache/'  # $HOMEではなくrunner.tempを使用
   KUBECTL_VERSION:
     description: 'aaa'
     required: true
