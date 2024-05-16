@@ -3,7 +3,7 @@ inputs:
   CACHE_DIR:
     description: 'aaa'
     required: true
-    default: '${{ github.workspace }}/.cache/'
+    default: '/home/runner/.cache/kubectl'
   KUBECTL_VERSION:
     description: 'aaa'
     required: true
