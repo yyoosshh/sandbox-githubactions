@@ -12,6 +12,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: mkdir
+      run: |
+        mkdir ${{ inputs.CACHE_DIR }}
+        touch ${{ inputs.CACHE_DIR }}/kubectl
     - name: debug cachedir
       run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
       shell: bash
