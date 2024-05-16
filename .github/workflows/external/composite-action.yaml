@@ -1,0 +1,13 @@
+name: 'composite action'
+inputs:
+  CACHE_DIR:
+    description: 'aaa'
+    required: true
+    default: '/usr/cache/'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: debug cachedir
+      run: echo "CACHE_DIR is ${{ inputs.CACHE_DIR }}"
+      shell: bash
