@@ -25,6 +25,5 @@ runs:
       shell: bash
     - name: run kube
       run: |
-        set -euo pipefail
-        kubectl version
+        which kubectl
       shell: bash
