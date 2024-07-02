@@ -1,12 +1,11 @@
-name: Main workflow
+name: Manual Hello Echo
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:  # 手動実行のトリガー
 
 jobs:
-  test:
-    runs-on: self-hosted
+  say-hello:
+    runs-on: ubuntu-latest
     steps:
-        - name: checkout code
-          uses: actions/checkout@v3
-        - name: run composite action
-          uses: ./.github/actions/composite-action
+      - name: Echo Hello
+        run: echo "hello"

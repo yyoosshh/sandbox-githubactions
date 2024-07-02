@@ -1,0 +1,12 @@
+name: Hourly Time Echo
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # 毎時0分に実行
+
+jobs:
+  echo-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current time
+        run: echo "Current time is $(date)"
